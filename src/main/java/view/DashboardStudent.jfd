@@ -1,0 +1,64 @@
+JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :p:18:p, comp label1:::p:174:p, space :::x}, seq {space :p:41:p, comp scrollPane1:::p:336:p, space ::146:x, par l {comp button1::t:p:130:p, comp button2::t:p:130:p, comp button3::t:p:130:p, comp button4::t:p:130:p}, space :45:45:p}}"
+			"$verticalGroup": "par l {seq l {space :p:18:p, comp label1:::p::p, par l {seq {space ::151:x, comp scrollPane1:::p:287:p, space :p:32:p}, seq l {space :p:137:p, comp button1:::p::p, space :p:35:p, comp button2:::p::p, space :p:35:p, comp button3:::p::p, space :p:35:p, comp button4:::p::p, space :::x}}}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Selamat Datang Teacher"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table1"
+					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+						add( new java.util.Vector {
+							add( null )
+							add( null )
+						} )
+						add( new java.util.Vector {
+							add( null )
+							add( null )
+						} )
+					}, new java.util.Vector {
+						add( "Nama Quiz" )
+						add( "Id_Quiz" )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+					} )
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "Edit Quiz"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "Tambah Quiz"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button3"
+				"text": "Hapus Quiz"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button4"
+				"text": "Lihat Quiz"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 560, 435 )
+		} )
+	}
+}

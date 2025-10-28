@@ -1,0 +1,74 @@
+JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:20:p, comp scrollPane1:::p:395:p, space ::125:x, par l:::p {comp TombolVerifAdmin:::::x, comp TombolTolakAdmin:::::x}, space :p:38:p}, seq t {space ::531:x, comp TombolKembaliAdmin:::p:123:p, space :p:19:p}}"
+			"$verticalGroup": "par l {seq t {space :::p, comp TombolKembaliAdmin:::p::p, par l {seq {space ::99:x, comp scrollPane1:::p:318:p, space :p:34:p}, seq l {space :p:115:p, comp TombolVerifAdmin:::p::p, space u:::p, comp TombolTolakAdmin:::p::p, space ::264:x}}}}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "TabelAdmin"
+					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+						add( new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+						add( new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+					}, new java.util.Vector {
+						add( "Nama" )
+						add( "Username" )
+						add( "Role" )
+						add( "ID" )
+						add( "Status" )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					} )
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "TombolKembaliAdmin"
+				"text": "Kembali"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "TombolVerifAdmin"
+				"text": "Verifikasi"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "TombolTolakAdmin"
+				"text": "Tolak"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 540, 420 )
+		} )
+	}
+}

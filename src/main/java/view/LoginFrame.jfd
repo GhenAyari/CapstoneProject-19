@@ -1,0 +1,61 @@
+JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:163:p, comp panel1:::p::p, space ::169:x}}"
+			"$verticalGroup": "par l {seq l {space :p:77:p, comp panel1:::p::p, space ::167:x}}"
+		} ) {
+			name: "this"
+			"background": new java.awt.Color( 0, 204, 204, 255 )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :p:19:p, par l {seq {comp TombolRegister:::p::p, space s:::p, comp TombolLogin:::p::p, space s:::p, comp TombolRole:::p::p}, par l:::p {comp label2:::p:165:p, comp label1:::p:152:p, comp InputNamaLogin::::296:x, comp InputUsernameLogin::l::296:x, comp label3::l:p::p, comp InputPasswordLogin::l::296:x}}, space ::26:x}}"
+				"$verticalGroup": "par l {seq l {space :p:18:p, comp label1:::p::p, space :::p, comp InputNamaLogin:::p::p, space :::p, comp label2:::p::p, space :::p, comp InputUsernameLogin:::p::p, space :::p, comp label3:::p::p, space :::p, comp InputPasswordLogin:::p::p, space u:::p, par b {comp TombolRegister::b:p::p, comp TombolLogin::b:p::p, comp TombolRole::b:p::p}, space ::34:x}}"
+			} ) {
+				name: "panel1"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "Masukkan Nama"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "InputNamaLogin"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "Masukkan Username"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "InputUsernameLogin"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "Masukkan Password"
+				} )
+				add( new FormComponent( "javax.swing.JPasswordField" ) {
+					name: "InputPasswordLogin"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "TombolRegister"
+					"text": "Register"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "TombolLogin"
+					"text": "Login"
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "TombolRole"
+					"model": new javax.swing.DefaultComboBoxModel {
+						selectedItem: "Admin"
+						addElement( "Admin" )
+						addElement( "Teacher" )
+						addElement( "Student" )
+					}
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 20, 0 )
+			"size": new java.awt.Dimension( 540, 440 )
+		} )
+	}
+}
