@@ -1,0 +1,114 @@
+JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {par l {seq l {space :p:57:p, par l {comp SoalQuiz:::p:586:p, comp NamaQuizTeacher::l:p:154:p}}, seq l {space :p:33:p, comp scrollPane1:::p:379:p, space :::p, comp JawabanBenar:::p::p, space :p:25:p, par l {comp button4:::p::p, comp TombolUpdateTeacher::t:::x, comp TombolBuatTeacher::t:::x, comp TombolSimpanTeacher::l:::x, comp TombolHapusTeacher::l:::x, comp TombolBuatTeacher2::t:::x}}}, space :p:42:p}}"
+			"$verticalGroup": "par l {seq {space :p:19:p, comp SoalQuiz:::p:100:p, par l {seq l {space :p:46:p, par b {comp JawabanBenar::b:p::p, comp TombolSimpanTeacher::b:p::p}, space u:::p, comp TombolHapusTeacher:::p::p, space s:::p, comp TombolUpdateTeacher:::p::p, space s:::p, comp TombolBuatTeacher:::p::p, space s:::p, comp TombolBuatTeacher2:::p::p, space ::150:x}, seq {space ::10:x, par b {comp NamaQuizTeacher::b:p::p, comp button4::b:p::p}, space s:::p, comp scrollPane1:::p:312:p, space :p:42:p}}}}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "TabelTeacher"
+					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+						add( new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+						add( new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+					}, new java.util.Vector {
+						add( "Id" )
+						add( "No" )
+						add( "Soal" )
+						add( "A" )
+						add( "B" )
+						add( "C" )
+						add( "D" )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					} )
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "SoalQuiz"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "JawabanBenar"
+				"model": new javax.swing.DefaultComboBoxModel {
+					selectedItem: "A"
+					addElement( "A" )
+					addElement( "B" )
+					addElement( "C" )
+					addElement( "D" )
+				}
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "TombolSimpanTeacher"
+				"text": "Simpan"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "TombolHapusTeacher"
+				"text": "Hapus"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "TombolUpdateTeacher"
+				"text": "Update"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "TombolBuatTeacher"
+				"text": "Buat"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "NamaQuizTeacher"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button4"
+				"text": "Simpan Next"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "TombolBuatTeacher2"
+				"text": "Baru"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 550, 455 )
+		} )
+	}
+}
