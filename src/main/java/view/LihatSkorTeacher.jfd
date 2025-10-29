@@ -4,14 +4,10 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {seq {space :p:18:p, comp label1:::p:174:p}, seq {space :p:41:p, comp scrollPane1:::p:336:p, space :p:121:p, comp button4:::p:91:p}}, space ::121:x}}"
-			"$verticalGroup": "par l {seq l {space :p:18:p, comp label1:::p::p, par l {seq {space ::151:x, comp scrollPane1:::p:287:p, space :p:32:p}, seq l {space :p:166:p, comp button4:::p::p, space ::274:x}}}}"
+			"$horizontalGroup": "par l {seq l {space :p:52:p, comp scrollPane1:::p:509:p, space s:::p, par l {comp button1:::p::p, comp button2:::p::p}, space ::20:x}}"
+			"$verticalGroup": "par l {seq t {space ::149:x, comp scrollPane1:::p:295:p, space :p:50:p}, seq l {space :p:158:p, comp button1:::p::p, space s:::p, comp button2:::p::p, space ::258:x}}"
 		} ) {
 			name: "this"
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label1"
-				"text": "Selamat Datang Student"
-			} )
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 				name: "scrollPane1"
 				add( new FormComponent( "javax.swing.JTable" ) {
@@ -21,25 +17,37 @@ new FormModel {
 							add( null )
 							add( null )
 							add( null )
+							add( null )
+							add( null )
 						} )
 						add( new java.util.Vector {
 							add( null )
 							add( null )
 							add( null )
+							add( null )
+							add( null )
 						} )
 					}, new java.util.Vector {
+						add( "ID Quiz" )
 						add( "Nama Quiz" )
-						add( "Id_Quiz" )
-						add( "Jumlah Soal" )
+						add( "Total Skor" )
+						add( "Total Benar" )
+						add( "Total Salah" )
+					}, new java.util.Vector {
+						add( class java.lang.Integer )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
 					}, new java.util.Vector {
 						add( null )
 						add( null )
 						add( null )
+						add( null )
+						add( null )
 					}, new java.util.Vector {
 						add( null )
 						add( null )
-						add( null )
-					}, new java.util.Vector {
 						add( null )
 						add( null )
 						add( null )
@@ -47,12 +55,16 @@ new FormModel {
 				} )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button4"
-				"text": "Kerjakan"
+				name: "button1"
+				"text": "Kembali"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "Hapus"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 570, 435 )
+			"size": new java.awt.Dimension( 550, 426 )
 		} )
 	}
 }

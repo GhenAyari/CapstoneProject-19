@@ -4,88 +4,220 @@
 
 package view;
 
+import app.AppContext;              // <-- pastikan AppContext ada di package 'app'
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
-import javax.swing.table.*;
 
 /**
  * @author Asus
  */
-public class AdminDashboard extends JFrame {
-    public AdminDashboard() {
+public class LoginFrame extends JFrame {
+    public LoginFrame() {
         initComponents();
+
+        // =====================[ REGISTER ]=====================
+        TombolRegister.addActionListener(e -> {
+            String nama = InputNamaLogin.getText().trim(); // belum dipakai ke DB
+            String username = InputUsernameLogin.getText().trim();
+            String password = new String(InputPasswordLogin.getPassword()).trim();
+            String role = (String) TombolRole.getSelectedItem();
+
+            if (username.isEmpty() || password.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Isi username & password dulu.");
+                return;
+            }
+
+            try {
+                switch (role) {
+                    case "Teacher" -> {
+                        AppContext.AUTH.registerTeacher(username, password);
+                        JOptionPane.showMessageDialog(this,
+                                "Registrasi TEACHER berhasil.\nTunggu verifikasi admin sebelum login.");
+                    }
+                    case "Student" -> {
+                        AppContext.AUTH.registerStudent(username, password);
+                        JOptionPane.showMessageDialog(this,
+                                "Registrasi STUDENT berhasil.\nTunggu verifikasi admin sebelum login.");
+                    }
+                    default -> JOptionPane.showMessageDialog(this,
+                            "Admin tidak registrasi di sini.");
+                }
+                // opsional bersihkan password
+                InputPasswordLogin.setText("");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Gagal register: " + ex.getMessage());
+            }
+        });
+
+        // =======================[ LOGIN ]======================
+        TombolLogin.addActionListener(e -> {
+            String username = InputUsernameLogin.getText().trim();
+            String password = new String(InputPasswordLogin.getPassword()).trim();
+            String role = (String) TombolRole.getSelectedItem();
+
+            if (username.isEmpty() || password.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Isi username & password dulu.");
+                return;
+            }
+
+            try {
+                switch (role) {
+                    case "Admin" -> {
+                        boolean ok = AppContext.AUTH.loginAdmin(username, password);
+                        if (!ok) {
+                            JOptionPane.showMessageDialog(this, "Login admin gagal.");
+                            return;
+                        }
+                        new AdminDashboard().setVisible(true);
+                        dispose();
+                    }
+                    case "Teacher" -> {
+                        var t = AppContext.AUTH.loginTeacher(username, password);
+                        if (t == null) {
+                            JOptionPane.showMessageDialog(this, "Login gagal (akun tidak ditemukan / password salah).");
+                            return;
+                        }
+                        if (!t.isVerified()) {
+                            JOptionPane.showMessageDialog(this, "Akun TEACHER belum diverifikasi admin.");
+                            return;
+                        }
+                        AppContext.currentUserId = t.getUsersId();
+                        new DashboardTeacher().setVisible(true);
+                        dispose();
+                    }
+                    case "Student" -> {
+                        var s = AppContext.AUTH.loginStudent(username, password);
+                        if (s == null) {
+                            JOptionPane.showMessageDialog(this, "Login gagal (akun tidak ditemukan / password salah).");
+                            return;
+                        }
+                        if (!s.isVerified()) {
+                            JOptionPane.showMessageDialog(this, "Akun STUDENT belum diverifikasi admin.");
+                            return;
+                        }
+                        AppContext.currentUserId = s.getUsersId();
+                        new DashboardStudent().setVisible(true);
+                        dispose();
+                    }
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+            }
+        });
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Ghendida
-        scrollPane1 = new JScrollPane();
-        TabelAdmin = new JTable();
-        TombolKembaliAdmin = new JButton();
-        TombolVerifAdmin = new JButton();
-        TombolTolakAdmin = new JButton();
+        panel1 = new JPanel();
+        label1 = new JLabel();
+        InputNamaLogin = new JTextField();
+        label2 = new JLabel();
+        InputUsernameLogin = new JTextField();
+        label3 = new JLabel();
+        InputPasswordLogin = new JPasswordField();
+        TombolRegister = new JButton();
+        TombolLogin = new JButton();
+        TombolRole = new JComboBox<>();
 
         //======== this ========
+        setBackground(new Color(0x00cccc));
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         var contentPane = getContentPane();
 
-        //======== scrollPane1 ========
+        //======== panel1 ========
         {
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
+                    EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing
+                    . border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ),
+                    java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( )
+        { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () ))
+            throw new RuntimeException( ); }} );
 
-            //---- TabelAdmin ----
-            TabelAdmin.setModel(new DefaultTableModel(
-                new Object[][] {
-                    {null, null, null, null, null},
-                    {null, null, null, null, null},
-                },
-                new String[] {
-                    "Nama", "Username", "Role", "ID", "Status"
-                }
-            ));
-            scrollPane1.setViewportView(TabelAdmin);
+            //---- label1 ----
+            label1.setText("Masukkan Nama");
+
+            //---- label2 ----
+            label2.setText("Masukkan Username");
+
+            //---- label3 ----
+            label3.setText("Masukkan Password");
+
+            //---- TombolRegister ----
+            TombolRegister.setText("Register");
+
+            //---- TombolLogin ----
+            TombolLogin.setText("Login");
+
+            //---- TombolRole ----
+            TombolRole.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "Admin",
+                    "Teacher",
+                    "Student"
+            }));
+
+            GroupLayout panel1Layout = new GroupLayout(panel1);
+            panel1.setLayout(panel1Layout);
+            panel1Layout.setHorizontalGroup(
+                    panel1Layout.createParallelGroup()
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                    .addGap(19, 19, 19)
+                                    .addGroup(panel1Layout.createParallelGroup()
+                                            .addGroup(panel1Layout.createSequentialGroup()
+                                                    .addComponent(TombolRegister)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(TombolLogin)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(TombolRole, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(label2, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(InputNamaLogin, GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                                                    .addComponent(InputUsernameLogin, GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                                                    .addComponent(label3)
+                                                    .addComponent(InputPasswordLogin, GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)))
+                                    .addContainerGap(26, Short.MAX_VALUE))
+            );
+            panel1Layout.setVerticalGroup(
+                    panel1Layout.createParallelGroup()
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addComponent(label1)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(InputNamaLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(label2)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(InputUsernameLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(label3)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(InputPasswordLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                            .addComponent(TombolRegister)
+                                            .addComponent(TombolLogin)
+                                            .addComponent(TombolRole, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                    .addContainerGap(34, Short.MAX_VALUE))
+            );
         }
-
-        //---- TombolKembaliAdmin ----
-        TombolKembaliAdmin.setText("Kembali");
-
-        //---- TombolVerifAdmin ----
-        TombolVerifAdmin.setText("Verifikasi");
-
-        //---- TombolTolakAdmin ----
-        TombolTolakAdmin.setText("Tolak");
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
-            contentPaneLayout.createParallelGroup()
-                .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addGap(20, 20, 20)
-                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 395, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                        .addComponent(TombolVerifAdmin, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(TombolTolakAdmin, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGap(38, 38, 38))
-                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addContainerGap(531, Short.MAX_VALUE)
-                    .addComponent(TombolKembaliAdmin, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
-                    .addGap(19, 19, 19))
+                contentPaneLayout.createParallelGroup()
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                                .addGap(163, 163, 163)
+                                .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(169, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
-            contentPaneLayout.createParallelGroup()
-                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(TombolKembaliAdmin)
-                    .addGroup(contentPaneLayout.createParallelGroup()
+                contentPaneLayout.createParallelGroup()
                         .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
-                            .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 318, GroupLayout.PREFERRED_SIZE)
-                            .addGap(34, 34, 34))
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGap(115, 115, 115)
-                            .addComponent(TombolVerifAdmin)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(TombolTolakAdmin)
-                            .addContainerGap(264, Short.MAX_VALUE))))
+                                .addGap(77, 77, 77)
+                                .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(167, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -94,10 +226,15 @@ public class AdminDashboard extends JFrame {
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     // Generated using JFormDesigner Evaluation license - Ghendida
-    private JScrollPane scrollPane1;
-    private JTable TabelAdmin;
-    private JButton TombolKembaliAdmin;
-    private JButton TombolVerifAdmin;
-    private JButton TombolTolakAdmin;
+    private JPanel panel1;
+    private JLabel label1;
+    private JTextField InputNamaLogin;
+    private JLabel label2;
+    private JTextField InputUsernameLogin;
+    private JLabel label3;
+    private JPasswordField InputPasswordLogin;
+    private JButton TombolRegister;
+    private JButton TombolLogin;
+    private JComboBox<String> TombolRole;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

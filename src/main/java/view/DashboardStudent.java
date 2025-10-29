@@ -63,7 +63,7 @@ public class DashboardStudent extends JFrame {
                             .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 336, GroupLayout.PREFERRED_SIZE)
                             .addGap(121, 121, 121)
                             .addComponent(button4, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(109, Short.MAX_VALUE))
+                    .addContainerGap(121, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()

@@ -1,18 +1,19 @@
 /*
- * Created by JFormDesigner on Wed Oct 29 04:00:18 SGT 2025
+ * Created by JFormDesigner on Wed Oct 29 10:48:08 SGT 2025
  */
 
 package view;
 
 import javax.swing.*;
 import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle;
 import javax.swing.table.*;
 
 /**
  * @author Asus
  */
-public class TambahQuiz extends JFrame {
-    public TambahQuiz() {
+public class DashboardTeacher extends JFrame {
+    public DashboardTeacher() {
         initComponents();
     }
 
